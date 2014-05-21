@@ -27,12 +27,6 @@ services:
 
     chat.command_resolver:
         class: Touki\ChatBundle\CommandResolver
-        calls:
-            - [ "add", [ @chat.command.ima ] ]
-            - [ "add", [ @chat.command.msg ] ]
-            - [ "add", [ @chat.command.bai ] ]
-            - [ "add", [ @chat.command.list ] ]
-            - [ "add", [ @chat.command.kick ] ]
 
     chat.user_listener:
         class: Touki\ChatBundle\EventListener\UserListener
@@ -54,16 +48,26 @@ services:
         class: Touki\ChatBundle\ChatCommand\Ima
         arguments:
             - @chat.users
+        tags:
+            - { name: chat.command }
 
     chat.command.msg:
         class: Touki\ChatBundle\ChatCommand\Message
+        tags:
+            - { name: chat.command }
 
     chat.command.bai:
         class: Touki\ChatBundle\ChatCommand\Bai
+        tags:
+            - { name: chat.command }
 
     chat.command.list:
         class: Touki\ChatBundle\ChatCommand\Users
+        tags:
+            - { name: chat.command }
 
     chat.command.kick:
         class: Touki\ChatBundle\ChatCommand\Kick
+        tags:
+            - { name: chat.command }
 
