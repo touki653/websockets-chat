@@ -221,6 +221,17 @@ var conn;
 
                 box.appendChild(message)
 
+                var date = new Date,
+                    hours = date.getHours() < 10 ? '0'+date.getHours() : date.getHours(),
+                    mins = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes(),
+                    secs = date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds()
+
+                var hour = document.createElement("div")
+                hour.setAttribute("class", "pull-right hour")
+                hour.innerHTML = hours+':'+mins+':'+secs
+
+                box.insertBefore(hour, message)
+
                 $(".messages-container").scrollTop(99999999)
 
                 return;
@@ -244,6 +255,17 @@ var conn;
             message.innerHTML = content
 
             box.appendChild(message)
+
+            var date = new Date,
+                hours = date.getHours() < 10 ? '0'+date.getHours() : date.getHours(),
+                mins = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes(),
+                secs = date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds()
+
+            var hour = document.createElement("div")
+            hour.setAttribute("class", "pull-right hour")
+            hour.innerHTML = hours+':'+mins+':'+secs
+
+            box.insertBefore(hour, message)
 
             container.appendChild(box)
 
