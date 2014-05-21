@@ -1,0 +1,3 @@
+touki_chat:
+    resource: "@ToukiChatBundle/Controller"
+    type: annotation

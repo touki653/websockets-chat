@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+    {% stylesheets
+        '@ToukiChatBundle/Resources/public/css/style.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="overlay">
+    <p id="overlay-content">
+        Loading Chat...
+    </p>
+</div>
+<div class="window-container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="parameters-container">
+                <div class="block">Notifications</div>
+                <div class="parameter">
+                    <div class="checkbox">
+                        <label>
+                            Lors d'un message
+                            <input type="checkbox" data-parameter="notifOnMessage">
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            Lors d'un ping (@)
+                            <input type="checkbox" data-parameter="notifOnPing">
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            Beep lors d'un ping (@)
+                            <input type="checkbox" data-parameter="beepOnPing">
+                        </label>
+                    </div>
+
+                    <a href="#" onclick="notify('Notifications', 'Les notifications ont bien été activées')">Activer les notifications</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 inner-container">
+            <div class="messages-container"></div>
+            <div class="chat-container">
+                <div class="input-group">
+                    <span class="input-group-addon" id="chat-nickname">{{ nickname }}</span>
+                    <textarea class="form-control" id="chat-sender" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="users-container">
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="beeper" src="/bundles/toukichat/audio/horrormovie.wav" preload="auto"></audio>
+{% javascripts
+    '@ToukiChatBundle/Resources/public/js/notify.js'
+    '@ToukiChatBundle/Resources/public/js/reconnecting-websockets.js'
+    '@ToukiChatBundle/Resources/public/js/chat.js'
+%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+
+</html>

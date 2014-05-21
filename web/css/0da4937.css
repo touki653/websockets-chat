@@ -1,0 +1,118 @@
+html, body {
+    background: url(//cdn.wonderfulengineering.com/wp-content/uploads/2013/12/metal-wallpaper-4.jpg) no-repeat center center fixed #222;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #eee;
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+}
+
+div, span, input, textarea {
+    border-radius:0px !important;
+}
+
+.window-container > .row {
+    height: 100%;
+}
+.window-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.inner-container {
+    height: 100%;
+}
+
+.inner-container .chat-container {
+    margin-top: 10px;
+}
+
+.inner-container .chat-container textarea:focus,
+.inner-container .chat-container textarea,
+.inner-container .chat-container input:focus,
+.inner-container .chat-container input {
+    border: none;
+    box-shadow: none;
+}
+
+.inner-container .messages-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 90%;
+}
+
+.inner-container .message-container {
+    margin-top: 10px;
+}
+
+.inner-container .messages-container .message-box {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.inner-container .message-container .message {
+    border: 1px dashed rgba(0, 0, 0, 0);
+    padding: 2px;
+}
+.inner-container .message-container .message:hover {
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+}
+
+.img {
+    max-width: 250px;
+    max-height: 400px;
+}
+
+.message a:hover,
+.message a {
+    color: #990505;
+}
+
+a {
+    color: #8080FF;
+}
+a:hover {
+    color: #8080FF;
+}
+
+.users-container .user {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    padding-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.users-container .user a {
+    color: white;
+}
+
+.parameters-container .block {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+.parameters-container .parameter {
+    padding-left: 20px;
+}
+#overlay {
+    z-index: 999;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+}
+#overlay p {
+    margin: auto;
+    margin-top: 20%;
+}

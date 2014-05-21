@@ -1,0 +1,69 @@
+services:
+    ratchet_app:
+        class: Ratchet\App
+        arguments:
+            - chat.devel
+            - 8080
+            - 0.0.0.0
+
+    chat.server:
+        class: Touki\ChatBundle\Server
+        arguments:
+            - @ratchet_app
+            - @chat.handler
+
+    chat.handler:
+        class: Touki\ChatBundle\ChatHandler
+        arguments:
+            - @chat.kernel
+
+    chat.kernel:
+        class: Touki\ChatBundle\Kernel
+        arguments:
+            - @chat.messenger
+            - @chat.commandcontext_factory
+            - @event_dispatcher
+            - @chat.command_resolver
+
+    chat.command_resolver:
+        class: Touki\ChatBundle\CommandResolver
+        calls:
+            - [ "add", [ @chat.command.ima ] ]
+            - [ "add", [ @chat.command.msg ] ]
+            - [ "add", [ @chat.command.bai ] ]
+            - [ "add", [ @chat.command.list ] ]
+            - [ "add", [ @chat.command.kick ] ]
+
+    chat.user_listener:
+        class: Touki\ChatBundle\EventListener\UserListener
+        arguments:
+            - @chat.users
+        tags:
+            - { name: kernel.event_listener, event: command.pre_execute, method: onCommandPreExecute }
+
+    chat.commandcontext_factory:
+        class: Touki\ChatBundle\CommandContextFactory
+
+    chat.messenger:
+        class: Touki\ChatBundle\Messenger
+
+    chat.users:
+        class: Touki\ChatBundle\UserCollection
+
+    chat.command.ima:
+        class: Touki\ChatBundle\ChatCommand\Ima
+        arguments:
+            - @chat.users
+
+    chat.command.msg:
+        class: Touki\ChatBundle\ChatCommand\Message
+
+    chat.command.bai:
+        class: Touki\ChatBundle\ChatCommand\Bai
+
+    chat.command.list:
+        class: Touki\ChatBundle\ChatCommand\Users
+
+    chat.command.kick:
+        class: Touki\ChatBundle\ChatCommand\Kick
+
