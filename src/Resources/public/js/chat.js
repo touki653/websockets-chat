@@ -1,7 +1,7 @@
 var conn;
 
 (function() {
-    unreadMessages = 0
+    var unreadMessages = 0
 
     function Parameters(storage) {
         this.storage = storage
@@ -163,7 +163,6 @@ var conn;
             }
 
             if ('true' == parameters.get("beepOnPing")) {
-                console.log("play")
                 document.getElementById("beeper").play()
             }
 
