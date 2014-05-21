@@ -91,7 +91,16 @@ var conn;
 
             event.stopPropagation()
 
-            return '<a target="_blank" href="'+content+'"><img class="img" src="'+content+'" alt=""></a>';
+            var loader = new Image
+            loader.src = "http://www.inis.qc.ca/public/inis/images/loader.gif"
+            loader.setAttribute("class", "img loader")
+
+            return ''+
+                '<a target="_blank" href="'+content+'">'+
+                    '<img src="'+content+'" class="hidden" onload="$(this).attr(\'class\', \'img\'); $(this).next().remove(); $(\'.messages-container\').scrollTop(99999999)">'+
+                    loader.outerHTML+
+                '</a>'
+            ;
         }
     }
 
