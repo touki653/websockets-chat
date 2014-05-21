@@ -2,10 +2,8 @@
 
 namespace Touki\ChatBundle\ChatCommand;
 
-use Ratchet\ConnectionInterface;
 use Touki\ChatBundle\Message\Leaving;
 use Touki\ChatBundle\User;
-use Touki\ChatBundle\UserCollection;
 use Touki\ChatBundle\Command;
 use Touki\ChatBundle\CommandContext;
 use Touki\ChatBundle\Messenger;
@@ -44,6 +42,6 @@ class Kick implements Command
             $users->remove($find);
         }
 
-        $messenger->send($users, new Leaving($user->getName()));
+        $messenger->send($users, new Leaving($context->getData()));
     }
 }

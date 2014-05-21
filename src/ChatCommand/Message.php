@@ -2,10 +2,7 @@
 
 namespace Touki\ChatBundle\ChatCommand;
 
-use Ratchet\ConnectionInterface;
-use Touki\ChatBundle\Message\Welcome;
 use Touki\ChatBundle\User;
-use Touki\ChatBundle\UserCollection;
 use Touki\ChatBundle\Command;
 use Touki\ChatBundle\CommandContext;
 use Touki\ChatBundle\Messenger;
@@ -33,8 +30,6 @@ class Message implements Command
     {
         $from = $context->getAttribute('user');
 
-        foreach ($context->getAttribute('users') as $user) {
-            $messenger->send($user, new Chat($from, $context->getData()));
-        }
+        $messenger->send($context->getAttribute('users'), new Chat($from, $context->getData()));
     }
 }

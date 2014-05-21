@@ -2,8 +2,6 @@
 
 namespace Touki\ChatBundle;
 
-use Ratchet\ConnectionInterface;
-
 /**
  * Base interface for chat commands
  *

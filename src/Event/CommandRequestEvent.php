@@ -47,7 +47,7 @@ class CommandRequestEvent extends Event
     public function setContext(CommandContext $context)
     {
         $this->context = $context;
-    
+
         return $this;
     }
 }

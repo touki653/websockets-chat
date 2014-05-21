@@ -167,7 +167,7 @@ ReconnectingWebSocket.debugAll = false;
 var conn;
 
 (function() {
-    unreadMessages = 0
+    var unreadMessages = 0
 
     function Parameters(storage) {
         this.storage = storage
@@ -257,7 +257,16 @@ var conn;
 
             event.stopPropagation()
 
-            return '<a target="_blank" href="'+content+'"><img class="img" src="'+content+'" alt=""></a>';
+            var loader = new Image
+            loader.src = "http://www.inis.qc.ca/public/inis/images/loader.gif"
+            loader.setAttribute("class", "img loader")
+
+            return ''+
+                '<a target="_blank" href="'+content+'">'+
+                    '<img src="'+content+'" class="hidden" onload="$(this).attr(\'class\', \'img\'); $(this).next().remove(); $(\'.messages-container\').scrollTop(99999999)">'+
+                    loader.outerHTML+
+                '</a>'
+            ;
         }
     }
 
@@ -329,7 +338,6 @@ var conn;
             }
 
             if ('true' == parameters.get("beepOnPing")) {
-                console.log("play")
                 document.getElementById("beeper").play()
             }
 
@@ -546,7 +554,7 @@ var conn;
                 data = null
 
             if (undefined !== last) {
-                data = send.slice(last)
+                data = send.slice(last + 1)
             }
         }
 

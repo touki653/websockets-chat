@@ -52,7 +52,8 @@ class ChatHandler implements MessageComponentInterface
         $this->kernel->handle($connection, '{"cmd":"BAI","data":null}');
     }
 
-    public function onError(ConnectionInterface $conn, \Exception $e) {
+    public function onError(ConnectionInterface $conn, \Exception $e)
+    {
         $conn->close();
     }
 }

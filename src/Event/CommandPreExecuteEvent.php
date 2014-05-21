@@ -55,7 +55,7 @@ class CommandPreExecuteEvent extends Event
     public function setContext(CommandContext $context)
     {
         $this->context = $context;
-    
+
         return $this;
     }
 
@@ -77,7 +77,7 @@ class CommandPreExecuteEvent extends Event
     public function setCommand(Command $command)
     {
         $this->command = $command;
-    
+
         return $this;
     }
 }

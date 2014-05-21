@@ -86,11 +86,11 @@ class Kernel
 
             $context = $event->getContext();
 
+            unset($event);
+
             if (null === $command = $this->resolver->resolve($context)) {
                 throw new UnknownCommandException($context->getCommand());
             }
-
-            unset($event);
 
             $event = new CommandPreExecuteEvent($context, $command);
             $this->dispatcher->dispatch('command.pre_execute', $event);
@@ -98,7 +98,7 @@ class Kernel
             $command = $event->getCommand();
             $context = $event->getContext();
 
-            $command->execute($event->getContext(), $this->messenger);
+            $command->execute($context, $this->messenger);
 
             unset($context);
             unset($event);

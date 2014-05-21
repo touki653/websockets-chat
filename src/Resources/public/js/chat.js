@@ -388,7 +388,7 @@ var conn;
                 data = null
 
             if (undefined !== last) {
-                data = send.slice(last)
+                data = send.slice(last + 1)
             }
         }
 

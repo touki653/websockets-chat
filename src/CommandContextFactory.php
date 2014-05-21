@@ -3,7 +3,6 @@
 namespace Touki\ChatBundle;
 
 use Touki\ChatBundle\Exception\ParseException;
-use Touki\ChatBundle\Exception\UnknownCommandException;
 use Ratchet\ConnectionInterface;
 
 /**

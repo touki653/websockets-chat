@@ -93,7 +93,7 @@ class CommandContext
     public function setData($data)
     {
         $this->data = $data;
-    
+
         return $this;
     }
 
@@ -106,7 +106,7 @@ class CommandContext
     {
         return $this->command;
     }
-    
+
     /**
      * Set Command
      *
@@ -115,7 +115,7 @@ class CommandContext
     public function setCommand($command)
     {
         $this->command = $command;
-    
+
         return $this;
     }
 
@@ -137,7 +137,7 @@ class CommandContext
     public function setConnection(ConnectionInterface $connection)
     {
         $this->connection = $connection;
-    
+
         return $this;
     }
 

@@ -2,9 +2,7 @@
 
 namespace Touki\ChatBundle\ChatCommand;
 
-use Ratchet\ConnectionInterface;
 use Touki\ChatBundle\Message\Welcome;
-use Touki\ChatBundle\Message\UsersAre;
 use Touki\ChatBundle\User;
 use Touki\ChatBundle\UserCollection;
 use Touki\ChatBundle\Command;
@@ -51,7 +49,6 @@ class Ima implements Command
 
         if (null !== $user = $this->users->matches($connection)) {
             // $user->setName($context->getData());
-
             return;
         }
 

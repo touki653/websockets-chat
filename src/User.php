@@ -46,7 +46,7 @@ class User implements ConnectionInterface
      */
     public function close()
     {
-        return $this->connection->send();
+        return $this->connection->close();
     }
 
     /**
@@ -68,7 +68,7 @@ class User implements ConnectionInterface
     {
         return $this->name;
     }
-    
+
     /**
      * Set Name
      *
@@ -77,7 +77,7 @@ class User implements ConnectionInterface
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 

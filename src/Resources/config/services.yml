@@ -70,4 +70,3 @@ services:
         class: Touki\ChatBundle\ChatCommand\Kick
         tags:
             - { name: chat.command }
-

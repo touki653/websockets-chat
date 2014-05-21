@@ -2,7 +2,6 @@
 
 namespace Touki\ChatBundle;
 
-use Touki\ChatBundle\Exception\ParseException;
 use Ratchet\ConnectionInterface;
 
 /**

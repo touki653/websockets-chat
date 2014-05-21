@@ -2,10 +2,8 @@
 
 namespace Touki\ChatBundle\ChatCommand;
 
-use Ratchet\ConnectionInterface;
 use Touki\ChatBundle\Message\Leaving;
 use Touki\ChatBundle\User;
-use Touki\ChatBundle\UserCollection;
 use Touki\ChatBundle\Command;
 use Touki\ChatBundle\CommandContext;
 use Touki\ChatBundle\Messenger;
@@ -15,7 +13,7 @@ use Touki\ChatBundle\Messenger;
  *
  * @author Touki <g.vincendon@vithemis.com>
  */
-class Kick implements Command
+class Code implements Command
 {
     /**
      * {@inheritDoc}
