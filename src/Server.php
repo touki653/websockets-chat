@@ -7,7 +7,7 @@ use Ratchet\App;
 /**
  * Server main class
  *
- * @author Touki <g.vincendon
+ * @author Touki <g.vincendon@vithemis.com>
  */
 class Server
 {
