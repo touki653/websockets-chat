@@ -115,16 +115,13 @@ var conn;
     }
     LinkParser.prototype = {
         parse: function(content, event) {
-            if (('http://' != content.slice(0, 7))
-                && ('https://' != content.slice(0, 8))
-                && ('//' != content.slice(0, 2))
-            ) {
-                return content
+            if (('http://' == content.slice(0, 7)) || ('https://' == content.slice(0, 8)) || ('//' == content.slice(0, 2))) {
+                event.stopPropagation()
+
+                return '<a target="_blank" href="'+content+'">'+content+'</a>';
             }
 
-            event.stopPropagation()
-
-            return '<a target="_blank" href="'+content+'">'+content+'</a>';
+            return content.replace(/http([^\s\b]+)/gi, '<a href="http$1" target="_blank">http$1</a>')
         }
     }
     function YoutubeParser() {
