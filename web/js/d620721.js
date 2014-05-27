@@ -1,32 +1,36 @@
 var notify
 (function() {
 notify = function(title, message, image) {
-    var havePermission = window.webkitNotifications.checkPermission();
+    if (!("Notification" in window)) {
+        return
+    }
 
-    if (havePermission == 0) {
+    var permissions = Notification.permission
+
+    if (permissions !== "granted") {
+        Notification.requestPermission(function (permission) {
+            notify(title, message, image)
+        })
+    }
+
+    if (permissions === "granted") {
         var wrap = document.createElement("div");
         wrap.innerHTML = message;
         message = (wrap.innerText) ? wrap.innerText : message;
 
-        // 0 is PERMISSION_ALLOWED
-        var notification = window.webkitNotifications.createNotification(
-          'http://png-4.findicons.com/files/icons/2443/bunch_of_cool_bluish_icons/512/chat.png', // image
-          title,
-          message
-        );
+        var notification = new Notification(title, {
+            body: message,
+            icon: 'http://png-4.findicons.com/files/icons/2443/bunch_of_cool_bluish_icons/512/chat.png', // image
+        });
 
         notification.onclick = function() {
             window.focus();
-            notification.cancel();
+            notification.close();
         };
 
-        notification.show();
-
         setTimeout(function() {
-            notification.cancel();
+            notification.close();
         }, 10000)
-    } else {
-        window.webkitNotifications.requestPermission();
     }
 };
 
