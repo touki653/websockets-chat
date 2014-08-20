@@ -5,6 +5,7 @@ namespace Touki\ChatBundle;
 use Touki\ChatBundle\Message\NickRequest;
 use Touki\ChatBundle\Message\UnknownData;
 use Touki\ChatBundle\Message\UnknownCommand;
+use Touki\ChatBundle\Message\Forbidden;
 use Touki\ChatBundle\Message\Error;
 use Touki\ChatBundle\Event\CommandRequestEvent;
 use Touki\ChatBundle\Event\CommandPreExecuteEvent;
@@ -45,6 +46,12 @@ class Kernel
     protected $resolver;
 
     /**
+     * Firewall
+     * @var Firewall
+     */
+    protected $firewall;
+
+    /**
      * Constructor
      *
      * @param Messenger                $messenger  Messenger
@@ -52,12 +59,13 @@ class Kernel
      * @param EventDispatcherInterface $dispatcher Event Dispatcher
      * @param CommandResolver          $resolver   Command Resolver
      */
-    public function __construct(Messenger $messenger, CommandContextFactory $factory, EventDispatcherInterface $dispatcher, CommandResolver $resolver)
+    public function __construct(Messenger $messenger, CommandContextFactory $factory, EventDispatcherInterface $dispatcher, CommandResolver $resolver, Firewall $firewall)
     {
         $this->messenger  = $messenger;
         $this->factory    = $factory;
         $this->dispatcher = $dispatcher;
         $this->resolver   = $resolver;
+        $this->firewall   = $firewall;
     }
 
     /**
@@ -67,6 +75,13 @@ class Kernel
      */
     public function handleConnection(ConnectionInterface $connection)
     {
+        if (!$this->firewall->isAllowed($connection)) {
+            $this->messenger->send($connection, new Forbidden);
+            $connection->close();
+
+            return;
+        }
+
         $this->messenger->send($connection, new NickRequest);
     }
 

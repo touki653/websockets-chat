@@ -371,6 +371,25 @@ var conn;
         }
     }
 
+    function EhrmNo() {
+    }
+    EhrmNo.prototype = {
+        matches: function(input) {
+            return input.cmd == 'EHRMNO'
+        },
+        execute: function(conn, input) {
+            conn.close()
+
+            if ($("#overlay").is(":hidden")) {
+                $("#overlay").fadeIn()
+            }
+
+            setTimeout(function() {
+                $("#overlay-content").text('Accès refusé.')
+            }, 200)
+        }
+    }
+
     $("#chat-sender").on("keydown", function(event) {
         var keyCode = (event.which ? event.which : event.keyCode);
 
@@ -448,9 +467,9 @@ var conn;
         new Message,
         new Welcome,
         new Leaving,
-        new DaList
+        new DaList,
+        new EhrmNo
     ]
-
 
     conn = new ReconnectingWebSocket('ws://chat.devel:8080/socket');
 

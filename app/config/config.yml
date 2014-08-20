@@ -67,3 +67,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+touki_chat:
+    users:
+        - 192.168.69.7   # Ici
+        - 192.168.69.225 # Plop
+        - 192.168.69.181 # FWD
+        - 192.168.69.188 # Alexis

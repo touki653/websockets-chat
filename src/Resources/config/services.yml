@@ -24,6 +24,12 @@ services:
             - @chat.commandcontext_factory
             - @event_dispatcher
             - @chat.command_resolver
+            - @chat.firewall
+
+    chat.firewall:
+        class: Touki\ChatBundle\Firewall
+        arguments:
+            - %chat.whitelist%
 
     chat.command_resolver:
         class: Touki\ChatBundle\CommandResolver
